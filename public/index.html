@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Path of Titans Config Generator</title>
+    <style>
+        /* CSS Variables for consistent theming */
+        :root {
+            --primary-color: #2ecc71;
+            --secondary-color: #3498db;
+            --accent-color: #9b59b6;
+            --background-color: #141e30;
+            --card-background: #243b55;
+            --text-color: #ecf0f1;
+            --text-muted: #bdc3c7;
+            --border-color: #34495e;
+            --border-radius: 12px;
+            --box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            --transition: all 0.3s ease;
+            --gradient: linear-gradient(135deg, #1a2a3d 0%, #243b55 100%);
+        }
+
+        /* Base styles */
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            background-image: linear-gradient(135deg, #141e30 0%, #243b55 100%);
+            min-height: 100vh;
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--text-color);
+            font-size: 2.8rem;
+            margin-bottom: 2rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            background: linear-gradient(45deg, #2ecc71, #3498db);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Grid Layout */
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 20px;
+        }
+
+        /* Section Styling */
+        .section-container {
+            background: var(--gradient);
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            border: 1px solid rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .section-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.3);
+        }
+
+        .section-header {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 15px;
+            margin: -25px -25px 20px -25px;
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+            font-weight: bold;
+            font-size: 1.1em;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+
+        /* Form Elements */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-color);
+            font-weight: 500;
+            font-size: 1.1em;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="password"],
+        textarea {
+            width: 100%;
+            padding: 12px;
+            background: rgba(255,255,255,0.1);
+            border: 2px solid rgba(255,255,255,0.1);
+            border-radius: var(--border-radius);
+            box-sizing: border-box;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.2);
+            background: rgba(255,255,255,0.15);
+        }
+
+        /* Buttons */
+        .tab-btn {
+            padding: 12px 24px;
+            border: none;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            cursor: pointer;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .tab-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(46, 204, 113, 0.4);
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(45deg, var(--secondary-color), var(--accent-color));
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.4);
+        }
+
+        /* Checkbox styling */
+        .checkbox-inline input[type="checkbox"] {
+            accent-color: var(--primary-color);
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Small text styling */
+        small {
+            color: var(--text-muted);
+            font-size: 0.9em;
+            margin-top: 8px;
+            display: block;
+        }
+
+        /* Animation for sections */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-container {
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            .section-container {
+                padding: 20px;
+            }
+
+            .section-header {
+                padding: 12px;
+                margin: -20px -20px 15px -20px;
+            }
+        }
+        .tab-pane {
+    display: none;
+}
+
+.tab-pane.active {
+    display: block;
+}
+.webhook-grid {
+    display: flex;
+    gap: 20px;
+}
+
+.webhook-column {
+    flex: 1;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+.bottom-button-container {
+    text-align: center;
+    margin-top: 30px; /* Adjusts the spacing from content above */
+}
+    </style>
+</head>
+<body>
+    <!-- Add this where you want the button to appear -->
+<button onclick="window.location.href='../GameUserGen/'" class="tab-btn">
+    Mod Selector
+</button>
+
+<style>
+.tab-btn {
+    padding: 12px 24px;
+    border: none;
+    background: linear-gradient(45deg, #2ecc71, #3498db);
+    color: white;
+    cursor: pointer;
+    border-radius: 12px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.tab-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(46, 204, 113, 0.4);
+}
+</style>
+<button onclick="window.location.href='/RulesGen/index.html'" class="tab-btn">
+    Rules Generator
+</button>
+    <h1>🦖 Path of Titans Config Generator 🦕</h1>
+    <form id="configForm">
+        <div class="form-group">
+            <label for="configFile">Upload Game.ini File (BETA)</label>
+            <input type="file" id="configFile" name="configFile">
+        </div>
+        <div class="grid-container">
+            <!-- Left Column -->
+            <div class="section-container">
+                <div class="section-header">[/Script/PathOfTitans.IGameSession]</div>
+                
+                <div class="form-group">
+                    <label for="ServerAdmins">🛡️ Server Admins</label>
+                    <textarea id="ServerAdmins" name="ServerAdmins" rows="3"
+                        placeholder="Enter each admin ID on a new line&#10;Example:&#10;000-000-000"></textarea>
+                    <small>Format: 000-000-000, one ID per line</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="ServerName">🏷️ Server Name</label>
+                    <input type="text" id="ServerName" name="ServerName" value="ServerNameHere">
+                </div>
+
+                <div class="form-group">
+                    <label for="MaxPlayers">👥 Max Players</label>
+                    <input type="number" id="MaxPlayers" name="MaxPlayers" value="100">
+                </div>
+
+                <div class="form-group">
+                    <label for="ServerMap">🗺️ Server Map</label>
+                    <input type="text" id="ServerMap" name="ServerMap" value="Island">
+                </div>
+
+                <div class="form-group">
+                    <label>🔧 Ability Editing Allowed</label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id="bServerEditAbilitiesAtNest" name="bServerEditAbilitiesAtNest">
+                            Nest
+                        </label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id="bServerEditAbilitiesInHomeCaves" name="bServerEditAbilitiesInHomeCaves" checked>
+                            Home Caves
+                        </label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id="bServerEditAbilitiesWhileSleeping" name="bServerEditAbilitiesWhileSleeping">
+                            Sleeping
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="ServerDiscord">💬 Discord</label>
+                    <input type="text" id="ServerDiscord" name="ServerDiscord" placeholder="OnlyTheLastPart">
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="bServerAutoRestart" name="bServerAutoRestart" checked>
+                        🔄 Server Auto Restart
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label for="RestartLengthInSeconds">⏱️ Restart Length (seconds)</label>
+                    <input type="number" id="RestartLengthInSeconds" name="RestartLengthInSeconds">
+                </div>
+
+                <div class="form-group">
+                    <label for="ServerLogoutTime">⏳ Server Logout Time</label>
+                    <input type="number" id="ServerLogoutTime" name="ServerLogoutTime">
+                    <small>Time before disconnected player removal</small>
+                </div>
+            </div>
+                        <!-- Right Column -->
+                        <div class="section-container">
+                            <div class="section-header">[/Script/PathOfTitans.IGameMode]</div>
+            
+                            <div class="form-group">
+                                <label for="ServerStartingTime">⏰Server Starting Time</label>
+                                <input type="number" id="ServerStartingTime" name="ServerStartingTime">
+                                <small>Specifies the time of day the server begins at after a restart. Time is scaled between 0-2300. Example:100 = 1:00 AM</small>
+                            </div>
+            
+                            <div class="form-group">
+                                <label for="bServerDynamicTimeOfDay">☀️Dynamic Time Of Day</label>
+                                <input type="number" id="bServerDynamicTimeOfDay" name="bServerDynamicTimeOfDay">
+                                <small>Specifies if the server uses a fixed (0) or dynamic (1) time of day. Fixed will use the ServerStartingTime.</small>
+                            </div>
+            
+                            <div class="form-group">
+                                <label for="DefaultCreatorModeSave">🎨 Creator Mode Save</label>
+                                <input type="text" id="DefaultCreatorModeSave" name="DefaultCreatorModeSave">
+                            </div>
+            
+                            <div class="form-group">
+                                <label for="MaxGroupSize">👥 Max Group Size</label>
+                                <input type="number" id="MaxGroupSize" name="MaxGroupSize">
+                            </div>
+            
+                            <div class="form-group">
+                                <label for="MaxGroupLeaderCommunicationDistance">📢 Group Leader Range</label>
+                                <input type="number" id="MaxGroupLeaderCommunicationDistance" name="MaxGroupLeaderCommunicationDistance">
+                            </div>
+            
+                            <div style="display: flex; justify-content: space-between;">
+                                <div class="form-group">
+                                    <label>
+                                        <input type="checkbox" id="bServerRestrictCarnivoreGrouping" name="bServerRestrictCarnivoreGrouping">
+                                        🐊Restrict Carnivore Grouping
+                                    </label>
+                                    <small>This feature determines whether the server limits the grouping of carnivores to those of the same species.</small>
+                                </div>
+            
+                                <div class="form-group">
+                                    <label>
+                                        <input type="checkbox" id="bServerRestrictHerbivoreGrouping" name="bServerRestrictHerbivoreGrouping">
+                                        🌴Restrict Herbivore Grouping
+                                    </label>
+                                </div>
+                            </div>
+            
+                            <div class="section-header">[SourceRCON]</div>
+            
+                            <div class="form-group">
+                                <label>
+                                    <input type="checkbox" id="RCONEnabled" name="RCONEnabled" checked>
+                                    🔌 Enable RCON
+                                </label>
+                            </div>
+            
+                            <div class="form-group">
+                                <label>
+                                    <input type="checkbox" id="RCONLogging" name="RCONLogging" checked>
+                                    📝 RCON Logging
+                                </label>
+                            </div>
+            
+                            <div class="form-group">
+                                <label for="RCONPassword">🔑 RCON Password</label>
+                                <input type="password" id="RCONPassword" name="RCONPassword" placeholder="Enter RCON password">
+                            </div>
+                        </div>
+                        </div>
+            
+<!-- Webhooks Section -->
+<div class="section-container webhooks-section full-width">
+    <div class="section-header">[ServerWebhooks]</div>
+    <div class="form-group">
+        <label>
+            <input type="checkbox" id="WebhooksEnabled" name="WebhooksEnabled">
+            🎣 Enable Webhooks
+        </label>
+    </div>
+    <div class="webhook-grid">
+        <!-- Column 1 -->
+        <div class="webhook-column">
+            <div class="form-group">
+                <label for="PlayerReport">📢 Player Report</label>
+                <input type="text" id="PlayerReport" name="PlayerReport">
+            </div>
+            <div class="form-group">
+                <label for="PlayerChat">💭 Player Chat</label>
+                <input type="text" id="PlayerChat" name="PlayerChat">
+            </div>
+            <div class="form-group">
+                <label for="PlayerLogin">🚪 Player Login</label>
+                <input type="text" id="PlayerLogin" name="PlayerLogin">
+            </div>
+            <div class="form-group">
+                <label for="PlayerLogout">🚶 Player Logout</label>
+                <input type="text" id="PlayerLogout" name="PlayerLogout">
+            </div>
+            <div class="form-group">
+                <label for="PlayerLeave">👋 Player Leave</label>
+                <input type="text" id="PlayerLeave" name="PlayerLeave">
+            </div>
+            <div class="form-group">
+                <label for="PlayerKilled">💀 Player Killed</label>
+                <input type="text" id="PlayerKilled" name="PlayerKilled">
+            </div>
+            <div class="form-group">
+                <label for="PlayerQuestComplete">✅ Quest Complete</label>
+                <input type="text" id="PlayerQuestComplete" name="PlayerQuestComplete">
+            </div>
+        </div>
+        <!-- Column 2 -->
+        <div class="webhook-column">
+            <div class="form-group">
+                <label for="PlayerQuestFailed">❌ Quest Failed</label>
+                <input type="text" id="PlayerQuestFailed" name="PlayerQuestFailed">
+            </div>
+            <div class="form-group">
+                <label for="PlayerRespawn">🔄 Player Respawn</label>
+                <input type="text" id="PlayerRespawn" name="PlayerRespawn">
+            </div>
+            <div class="form-group">
+                <label for="ServerRestart">🔄 Server Restart</label>
+                <input type="text" id="ServerRestart" name="ServerRestart">
+            </div>
+            <div class="form-group">
+                <label for="AdminCommand">⚡ Admin Command</label>
+                <input type="text" id="AdminCommand" name="AdminCommand">
+            </div>
+            <div class="form-group">
+                <label for="ServerModerate">🛡️ Server Moderate</label>
+                <input type="text" id="ServerModerate" name="ServerModerate">
+            </div>
+            <div class="form-group">
+                <label for="PlayerDamagedPlayer">⚔️ Player Damage</label>
+                <input type="text" id="PlayerDamagedPlayer" name="PlayerDamagedPlayer">
+                <small>BEWARE! This webhook will create ALOT of messages</small>
+            </div>
+        </div>
+    </div>
+</div>
+            
+                    <!-- Advanced Settings Toggle and Container -->
+                    <div class="advanced-settings-toggle">
+                        <button type="button" id="toggleAdvanced">
+                            <span class="toggle-icon">▼</span> Advanced Settings
+                        </button>
+                    </div>
+            
+                    <div class="advanced-settings-container" style="display: none;">
+                        <div class="section-container">
+                            <div class="section-header">Advanced Settings</div>
+                            
+
+                            <!-- Tab Navigation -->
+                            <div class="tabs-nav">
+                                <button type="button" class="tab-btn active" data-tab="growth">Growth</button>
+                                <button type="button" class="tab-btn" data-tab="weather">Weather/Time</button>
+                                <button type="button" class="tab-btn" data-tab="death">Death</button>
+                                <button type="button" class="tab-btn" data-tab="homecave">Homecave</button>
+                                <button type="button" class="tab-btn" data-tab="critter">Critter</button>
+                                <button type="button" class="tab-btn" data-tab="combat">Combat</button>
+                                <button type="button" class="tab-btn" data-tab="quest">Quest</button>
+                                <button type="button" class="tab-btn" data-tab="nesting">Nesting</button>
+                            </div>
+                                            <!-- Tab Content -->
+                <div class="tab-content">
+                    <!-- Growth Tab -->
+                    <div class="tab-pane active" id="growth">
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" id="bServerGrowth" name="bServerGrowth" checked>
+                                Enable Server Growth
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label for="GlobalPassiveGrowthPerMinute">Global Passive Growth Per Minute</label>
+                            <input type="number" id="GlobalPassiveGrowthPerMinute" name="GlobalPassiveGrowthPerMinute">
+                            <small>Set to 0 for no passive growth</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="ChangeSubspeciesGrowthPenaltyPercent">Subspecies Change Growth Penalty (%)</label>
+                            <input type="number" id="ChangeSubspeciesGrowthPenaltyPercent" name="ChangeSubspeciesGrowthPenaltyPercent">
+                            <small>Percentage of growth lost when changing subspecies</small>
+                        </div>
+                    </div>
+
+                    <!-- Weather Tab -->
+                    <div class="tab-pane" id="weather">
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" id="bOverrideWeather" name="bOverrideWeather" checked>
+                                Override Weather
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label>Weather Length Variation (minutes)</label>
+                            <div class="coordinate-inputs">
+                                <div>
+                                    <label for="WeatherLengthVariationX">Minimum (X)</label>
+                                    <input type="number" id="WeatherLengthVariationX" name="WeatherLengthVariationX">
+                                </div>
+                                <div>
+                                    <label for="WeatherLengthVariationY">Maximum (Y)</label>
+                                    <input type="number" id="WeatherLengthVariationY" name="WeatherLengthVariationY">
+                                </div>
+                            </div>
+                            <small>The amount of time (in minutes) that any 1 weather type will be active for.</small>
+                        </div>
+                        <div class="form-group">
+                            <label>Weather Blend Variation (minutes)</label>
+                            <div class="coordinate-inputs">
+                                <div>
+                                    <label for="WeatherBlendVariationX">Minimum (X)</label>
+                                    <input type="number" id="WeatherBlendVariationX" name="WeatherBlendVariationX">
+                                </div>
+                                <div>
+                                    <label for="WeatherBlendVariationY">Maximum (Y)</label>
+                                    <input type="number" id="WeatherBlendVariationY" name="WeatherBlendVariationY">
+                                </div>
+                            </div>
+                            <small>The duration of time (in minutes) that will take for weather types to transition to the next.</small>
+                        </div>
+                        <div class="form-group">
+                            <div class="side-by-side">
+                                <label for="ServerDayLength">🌞Server Day Length</label>
+                                <input type="number" id="ServerDayLength" name="ServerDayLength">
+                            </div>
+                            <div class="side-by-side">
+                                <label for="ServerNightLength">🌃Server Night Length</label>
+                                <input type="number" id="ServerNightLength" name="ServerNightLength">
+                            </div>
+                        </div>
+                    </div>
+                                        <!-- Death Tab -->
+                                        <div class="tab-pane" id="death">
+                                            <div class="form-group">
+                                                <label>
+                                                    <input type="checkbox" id="bPermaDeath" name="bPermaDeath">
+                                                    Enable Permanent Death
+                                                </label>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>
+                                                    <input type="checkbox" id="bDeathInfo" name="bDeathInfo">
+                                                    Show Death Information
+                                                    <small>Only works with permadeath enabled</small>
+                                                </label>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="MinGrowthAfterDeath">Minimum Growth After Death</label>
+                                                <input type="number" id="MinGrowthAfterDeath" name="MinGrowthAfterDeath" step="0.1">
+                                                <small>The minimum growth a player will have after dying</small>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="FallDeathMarksPenaltyPercent">Fall Death Marks Penalty (%)</label>
+                                                <input type="number" id="FallDeathMarksPenaltyPercent" name="FallDeathMarksPenaltyPercent">
+                                                <small>Percentage of marks lost when dying from falling</small>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="FallDeathGrowthPenaltyPercent">Fall Death Growth Penalty (%)</label>
+                                                <input type="number" id="FallDeathGrowthPenaltyPercent" name="FallDeathGrowthPenaltyPercent">
+                                                <small>Percentage of growth lost when dying from falling</small>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="SurvivalDeathMarksPenaltyPercent">Survival Death Marks Penalty (%)</label>
+                                                <input type="number" id="SurvivalDeathMarksPenaltyPercent" name="SurvivalDeathMarksPenaltyPercent">
+                                                <small>Percentage of marks lost when dying from combat/survival</small>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="SurvivalDeathGrowthPenaltyPercent">Survival Death Growth Penalty (%)</label>
+                                                <input type="number" id="SurvivalDeathGrowthPenaltyPercent" name="SurvivalDeathGrowthPenaltyPercent">
+                                                <small>Percentage of growth lost when dying from combat/survival/starving/thirst</small>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="FurthestSpawnInclusionRadius">Furthest Spawn Radius</label>
+                                                <input type="number" id="FurthestSpawnInclusionRadius" name="FurthestSpawnInclusionRadius" step="0.1">
+                                                <small>Max radius for randomly picking a spawn point from the furthest spawn location from other players</small>
+                                            </div>
+                                        </div>
+                    
+                                        <!-- Homecave Tab -->
+                                        <div class="tab-pane" id="homecave">
+                                            <div class="form-group">
+                                                <label>
+                                                    <input type="checkbox" id="bServerHomeCaves" name="bServerHomeCaves" checked>
+                                                    Enable Home Caves
+                                                </label>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>
+                                                    <input type="checkbox" id="bServerWellRestedBuff" name="bServerWellRestedBuff" checked>
+                                                    Enable Well Rested Buff
+                                                </label>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>
+                                                    <input type="checkbox" id="bServerHatchlingCaves" name="bServerHatchlingCaves" checked>
+                                                    Enable Hatchling Caves
+                                                </label>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>
+                                                    <input type="checkbox" id="bServerHungerThirstInCaves" name="bServerHungerThirstInCaves">
+                                                    Enable Hunger/Thirst in Caves
+                                                </label>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="HatchlingCaveExitGrowth">Hatchling Cave Exit Growth</label>
+                                                <input type="number" id="HatchlingCaveExitGrowth" name="HatchlingCaveExitGrowth" step="0.01">
+                                                <small>Growth required to exit hatchling caves (0.25 = 25%)</small>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>
+                                                    <input type="checkbox" id="bServerHomecaveCampingDebuff" name="bServerHomecaveCampingDebuff" checked>
+                                                    Enable Homecave Camping Debuff
+                                                </label>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>
+                                                    <input type="checkbox" id="bOverrideHomecaveCampingDistance" name="bOverrideHomecaveCampingDistance">
+                                                    Override Homecave Camping Distance
+                                                </label>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="HomecaveCampingDistance">Homecave Camping Distance</label>
+                                                <input type="number" id="HomecaveCampingDistance" name="HomecaveCampingDistance">
+                                                <small>Distance (in units) from homecave entrance that triggers camping debuff</small>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>
+                                                    <input type="checkbox" id="bOverrideHomecaveCampingDelay" name="bOverrideHomecaveCampingDelay">
+                                                    Override Homecave Camping Delay
+                                                </label>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="HomecaveCampingDelay">Homecave Camping Delay</label>
+                                                <input type="number" id="HomecaveCampingDelay" name="HomecaveCampingDelay">
+                                                <small>Time (in seconds) before camping debuff is applied</small>
+                                            </div>
+                                        </div>
+                    
+                                        <!-- Critter Tab -->
+                                        <div class="tab-pane" id="critter">
+                                            <div class="form-group">
+                                                <label>
+                                                    <input type="checkbox" id="bServerCritters" name="bServerCritters" checked>
+                                                    Enable Critters
+                                                </label>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="ServerMaxCritters">Maximum Critters</label>
+                                                <input type="number" id="ServerMaxCritters" name="ServerMaxCritters" min="0">
+                                                <small>Maximum number of critters that can exist on the server at once</small>
+                                            </div>
+                                        </div>
+                                                            <!-- Combat Tab -->
+                    <div class="tab-pane" id="combat">
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" id="bServerCombatTimerAppliesToGroup" name="bServerCombatTimerAppliesToGroup" checked>
+                                Combat Timer Applies to Group
+                            </label>
+                            <small>If enabled, combat timer will apply to all group members when one is in combat</small>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" id="bLoseGrowthPastGrowthStages" name="bLoseGrowthPastGrowthStages" checked>
+                                Lose Growth Past Growth Stages
+                            </label>
+                            <small>If enabled, players can lose growth beyond growth stage thresholds when dying</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="CombatDeathMarksPenaltyPercent">Combat Death Marks Penalty (%)</label>
+                            <input type="number" id="CombatDeathMarksPenaltyPercent" name="CombatDeathMarksPenaltyPercent">
+                            <small>Percentage of marks lost when dying in combat</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="CombatDeathGrowthPenaltyPercent">Combat Death Growth Penalty (%)</label>
+                            <input type="number" id="CombatDeathGrowthPenaltyPercent" name="CombatDeathGrowthPenaltyPercent">
+                            <small>Percentage of growth lost when dying in combat</small>
+                        </div>
+                    </div>
+
+                    <!-- Quest Tab -->
+                    <div class="tab-pane" id="quest">
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" id="bOverrideMaxCompleteQuestsInLocation" name="bOverrideMaxCompleteQuestsInLocation">
+                                Override Max Complete Quests In Location
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label for="MaxCompleteQuestsInLocation">Max Complete Quests In Location</label>
+                            <input type="number" id="MaxCompleteQuestsInLocation" name="MaxCompleteQuestsInLocation">
+                            <small>Maximum number of quests that can be completed in a single location</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="QuestGrowthMultiplier">Quest Growth Multiplier</label>
+                            <input type="number" id="QuestGrowthMultiplier" name="QuestGrowthMultiplier" step="0.1">
+                            <small>Multiplier for growth gained from quests</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="QuestMarksMultiplier">Quest Marks Multiplier</label>
+                            <input type="number" id="QuestMarksMultiplier" name="QuestMarksMultiplier" step="0.1">
+                            <small>Multiplier for marks gained from quests</small>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" id="bOverrideLocalQuestCooldown" name="bOverrideLocalQuestCooldown">
+                                Override Local Quest Cooldown
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label for="LocalQuestCooldown">Local Quest Cooldown</label>
+                            <input type="number" id="LocalQuestCooldown" name="LocalQuestCooldown">
+                            <small>Cooldown time (in seconds) for local quests</small>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" id="bOverrideLocationQuestCooldown" name="bOverrideLocationQuestCooldown">
+                                Override Location Quest Cooldown
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label for="LocationQuestCooldown">Location Quest Cooldown</label>
+                            <input type="number" id="LocationQuestCooldown" name="LocationQuestCooldown">
+                            <small>Cooldown time (in seconds) for location quests</small>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" id="bLoseQuestsOnDeath" name="bLoseQuestsOnDeath" checked>
+                                Lose Quests On Death
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" id="bTrophyQuests" name="bTrophyQuests" checked>
+                                Enable Trophy Quests
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" id="bOverrideTrophyQuestCooldown" name="bOverrideTrophyQuestCooldown">
+                                Override Trophy Quest Cooldown
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label for="TrophyQuestCooldown">Trophy Quest Cooldown</label>
+                            <input type="number" id="TrophyQuestCooldown" name="TrophyQuestCooldown">
+                            <small>Cooldown time (in seconds) for trophy quests</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="MaxGroupQuests">Max Group Quests</label>
+                            <input type="number" id="MaxGroupQuests" name="MaxGroupQuests">
+                            <small>Maximum number of group quests allowed</small>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" id="bServerLocalWorldQuests" name="bServerLocalWorldQuests" checked>
+                                Enable Local World Quests
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label for="ServerMinTimeBetweenExplorationQuest">Min Time Between Exploration Quests</label>
+                            <input type="number" id="ServerMinTimeBetweenExplorationQuest" name="ServerMinTimeBetweenExplorationQuest">
+                            <small>Minimum time (in seconds) between exploration quests</small>
+                        </div>
+                    </div>
+                                        <!-- Nesting Tab -->
+                                        <div class="tab-pane" id="nesting">
+                                            <div class="basic-toggles">
+                                                <div class="form-group">
+                                                    <label>
+                                                        <input type="checkbox" id="bNesting" name="bNesting" checked>
+                                                        Enable Nesting
+                                                    </label>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>
+                                                        <input type="checkbox" id="bNestingDecorations" name="bNestingDecorations" checked>
+                                                        Enable Nesting Decorations
+                                                    </label>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>
+                                                        <input type="checkbox" id="bSameSpeciesAdoptionRestriction" name="bSameSpeciesAdoptionRestriction">
+                                                        Same Species Adoption Restriction
+                                                    </label>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>
+                                                        <input type="checkbox" id="bNestsInvulnerable" name="bNestsInvulnerable">
+                                                        Nests Invulnerable
+                                                    </label>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>
+                                                        <input type="checkbox" id="bSpawnParentNestOnLogin" name="bSpawnParentNestOnLogin">
+                                                        Spawn Parent Nest On Login
+                                                    </label>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>
+                                                        <input type="checkbox" id="bServerEditAbilitiesAtNest" name="bServerEditAbilitiesAtNest" checked>
+                                                        Edit Abilities At Nest
+                                                    </label>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>
+                                                        <input type="checkbox" id="bUseTutorialCustomGrowthMultiplier" name="bUseTutorialCustomGrowthMultiplier">
+                                                        Use Tutorial Custom Growth Multiplier
+                                                    </label>
+                                                </div>
+                                            </div>
+                    
+                                            <div class="growth-settings">
+                                                <div class="form-group">
+                                                    <label for="MinNestingGrowth">Minimum Nesting Growth</label>
+                                                    <input type="number" id="MinNestingGrowth" name="MinNestingGrowth" step="0.01">
+                                                    <small>Minimum growth required to create a nest (0.75 = 75%)</small>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="MaxNestImmunityBuffGrowth">Max Nest Immunity Buff Growth</label>
+                                                    <input type="number" id="MaxNestImmunityBuffGrowth" name="MaxNestImmunityBuffGrowth" step="0.01">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="MaxNestRespawnGrowth">Max Nest Respawn Growth</label>
+                                                    <input type="number" id="MaxNestRespawnGrowth" name="MaxNestRespawnGrowth" step="0.01">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="MaxNestFreeRespawnGrowth">Max Nest Free Respawn Growth</label>
+                                                    <input type="number" id="MaxNestFreeRespawnGrowth" name="MaxNestFreeRespawnGrowth" step="0.01">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="MaxAdoptionGrowth">Max Adoption Growth</label>
+                                                    <input type="number" id="MaxAdoptionGrowth" name="MaxAdoptionGrowth" step="0.01">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="MaxEatFromNestGrowth">Max Eat From Nest Growth</label>
+                                                    <input type="number" id="MaxEatFromNestGrowth" name="MaxEatFromNestGrowth" step="0.01">
+                                                </div>
+                                            </div>
+                    
+                                            <div class="nest-conditions">
+                                                <!-- Nest conditions settings -->
+                                                <div class="form-group">
+                                                    <label for="MinNestRespawnCondition">Min Nest Respawn Condition</label>
+                                                    <input type="number" id="MinNestRespawnCondition" name="MinNestRespawnCondition" step="0.01">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="MinNestHealthForDecorations">Min Nest Health For Decorations</label>
+                                                    <input type="number" id="MinNestHealthForDecorations" name="MinNestHealthForDecorations" step="0.01">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="MinNestBabySlotFoodWater">Min Nest Baby Slot Food/Water</label>
+                                                    <input type="number" id="MinNestBabySlotFoodWater" name="MinNestBabySlotFoodWater" step="0.01">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="MinNestBabySlotResources">Min Nest Baby Slot Resources</label>
+                                                    <input type="number" id="MinNestBabySlotResources" name="MinNestBabySlotResources" step="0.01">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="MinNestHealthToEditAbilities">Min Nest Health To Edit Abilities</label>
+                                                    <input type="number" id="MinNestHealthToEditAbilities" name="MinNestHealthToEditAbilities" step="0.01">
+                                                </div>
+                                            </div>
+                    
+                                            <div class="timers">
+                                                <div class="form-group">
+                                                    <label for="NestInactiveDespawnTimeSolo">Nest Inactive Despawn Time Solo (seconds)</label>
+                                                    <input type="number" id="NestInactiveDespawnTimeSolo" name="NestInactiveDespawnTimeSolo">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="NestInactiveDespawnTimeDependents">Nest Inactive Despawn Time Dependents (seconds)</label>
+                                                    <input type="number" id="NestInactiveDespawnTimeDependents" name="NestInactiveDespawnTimeDependents">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="NestDisrepairDespawnTime">Nest Disrepair Despawn Time (seconds)</label>
+                                                    <input type="number" id="NestDisrepairDespawnTime" name="NestDisrepairDespawnTime">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="NestBabySlotGenerationTime">Nest Baby Slot Generation Time (seconds)</label>
+                                                    <input type="number" id="NestBabySlotGenerationTime" name="NestBabySlotGenerationTime">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="NestInvitationExpiryTime">Nest Invitation Expiry Time (seconds)</label>
+                                                    <input type="number" id="NestInvitationExpiryTime" name="NestInvitationExpiryTime">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="NestAcceptedInvitationExpiryTime">Nest Accepted Invitation Expiry Time (seconds)</label>
+                                                    <input type="number" id="NestAcceptedInvitationExpiryTime" name="NestAcceptedInvitationExpiryTime">
+                                                </div>
+                                            </div>
+                    
+                                            <div class="other-settings">
+                                                <div class="form-group">
+                                                    <label for="FamilyBuffRange">Family Buff Range</label>
+                                                    <input type="number" id="FamilyBuffRange" name="FamilyBuffRange">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="NestResourceMultiplier">Nest Resource Multiplier</label>
+                                                    <input type="number" id="NestResourceMultiplier" name="NestResourceMultiplier" step="0.1">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="NestResourcelessConstructionSpeed">Nest Resourceless Construction Speed</label>
+                                                    <input type="number" id="NestResourcelessConstructionSpeed" name="NestResourcelessConstructionSpeed" step="0.1">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="NestObstructionRadius">Nest Obstruction Radius</label>
+                                                    <input type="number" id="NestObstructionRadius" name="NestObstructionRadius">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="TutorialCustomGrowthMultiplier">Tutorial Custom Growth Multiplier</label>
+                                                    <input type="number" id="TutorialCustomGrowthMultiplier" name="TutorialCustomGrowthMultiplier" step="0.1">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bottom-button-container">
+                                <button class="tab-btn">GENERATE</button>
+                            </div>
+                        </form>
+                        <script src="script.js"></script>
+                        <!-- Add this before the closing </body> tag of your HTML file -->
+<footer style="text-align: center; font-size: 0.9em; margin-top: 30px;">
+    <p>
+      <strong>ALWAYS BACKUP FILES BEFORE EDITING.</strong> If you find any issues or have complaints 
+      about this generator, please contact Bass in this Discord:
+      <a href="https://discord.gg/2XNMk7ak6X" target="_blank">https://discord.gg/2XNMk7ak6X</a>
+    </p>
+  </footer>
+                    </body>
+                    </html>
+
+                    </html>
+

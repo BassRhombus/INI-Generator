@@ -1,0 +1,90 @@
+{
+  "changelog": [
+    {
+      "version": "1.5.0",
+      "changes": [
+        {
+          "description": "Removed value attributes from all text and number inputs, except for checkboxes, to allow users to start with empty fields.",
+          "sections": [
+            "Basic Settings",
+            "Growth Settings",
+            "Weather Settings",
+            "Death Settings",
+            "Homecave Settings",
+            "Critter Settings",
+            "Combat Settings",
+            "Quest Settings",
+            "Nesting Settings"
+          ]
+        },
+        {
+          "description": "Added a reminder to the Advanced tab header: Any values left blank will be set to default.",
+          "sections": ["Advanced Settings"]
+        },
+        {
+          "description": "Reorganized the JavaScript code to improve readability and maintainability.",
+          "sections": ["JavaScript"]
+        },
+        {
+          "description": "Updated the JavaScript code to only include settings that have values, preventing empty lines in the generated INI file.",
+          "sections": ["JavaScript"]
+        },
+        {
+          "description": "Added a helper function to add settings to the INI file, making the code more concise and easier to manage.",
+          "sections": ["JavaScript"]
+        },
+        {
+          "description": "Removed unnecessary comments and whitespace from the code.",
+          "sections": ["JavaScript", "HTML"]
+        },
+        {
+          "description": "Improved the overall structure and organization of the HTML and JavaScript code.",
+          "sections": ["HTML", "JavaScript"]
+        }
+      ]
+    },
+    {
+      "version": "1.5.2",
+      "date": "2023-10-01",
+      "changes": [
+        {
+          "type": "feature",
+          "description": "Added disclaimer footer at the bottom of the page."
+        },
+        {
+          "type": "enhancement",
+          "details": {
+            "description": "Added a clickable link in the disclaimer pointing to the Discord server.",
+            "link": "https://discord.gg/2XNMk7ak6X",
+            "target": "_blank"
+          }
+        },
+        {
+          "type": "technical",
+          "details": {
+            "description": "Footer can be added statically in HTML or dynamically using JavaScript."
+          }
+        },
+        {
+          "type": "fix",
+          "description": "Corrected the autofill process for ServerAdmins, supporting multiple admins on separate lines."
+        },
+        {
+          "type": "fix",
+          "description": "Ensured that MaxGroupLeaderCommunicationDistance is now correctly filled."
+        },
+        {
+          "type": "enhancement",
+          "details": {
+            "description": "Improved INI file parsing to handle multiple ServerAdmins entries by storing them in an array for clean handling in the form.",
+            "iniParsingUpdate": {
+              "original": "ServerAdmins=013-142-944\nServerAdmins=023-542-221",
+              "parsedResult": "[ '013-142-944', '023-542-221' ]",
+              "displayInField": "013-142-944\n023-542-221"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

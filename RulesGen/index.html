@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rules & MOTD Generator</title>
+    <style>
+        :root {
+            --primary-color: #2ecc71;
+            --secondary-color: #3498db;
+            --accent-color: #9b59b6;
+            --background-color: #141e30;
+            --card-background: #243b55;
+            --text-color: #ecf0f1;
+            --text-muted: #bdc3c7;
+            --border-color: #34495e;
+            --border-radius: 12px;
+            --box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            --transition: all 0.3s ease;
+            --gradient: linear-gradient(135deg, #1a2a3d 0%, #243b55 100%);
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            background-image: linear-gradient(135deg, #141e30 0%, #243b55 100%);
+            min-height: 100vh;
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--text-color);
+            font-size: 2.8rem;
+            margin-bottom: 2rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            background: linear-gradient(45deg, #2ecc71, #3498db);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .tag-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+            background: var(--gradient);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .tag-button {
+            padding: 12px 24px;
+            border: none;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            cursor: pointer;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .tag-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(46, 204, 113, 0.4);
+        }
+
+        .line-container {
+            background: var(--gradient);
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            border: 1px solid rgba(255,255,255,0.1);
+            margin: 20px 0;
+        }
+
+        .line-row {
+            background: rgba(255,255,255,0.05);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            margin-bottom: 15px;
+        }
+
+        .segment-container {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        select, input[type="text"] {
+            padding: 12px;
+            background: rgba(255,255,255,0.1);
+            border: 2px solid rgba(255,255,255,0.1);
+            border-radius: var(--border-radius);
+            color: var(--text-color);
+            transition: var(--transition);
+        }
+
+        select:focus, input[type="text"]:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.2);
+            background: rgba(255,255,255,0.15);
+        }
+
+        .add-segment-button {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+        }
+
+        .remove-button {
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .generate-button, .download-button {
+            padding: 12px 24px;
+            border: none;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            cursor: pointer;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 0 10px;
+        }
+
+        .download-button {
+            background: linear-gradient(45deg, var(--secondary-color), var(--accent-color));
+        }
+
+        .output-container {
+            background: var(--gradient);
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            border: 1px solid rgba(255,255,255,0.1);
+            margin-top: 20px;
+        }
+
+        pre {
+            background: rgba(255,255,255,0.05);
+            padding: 15px;
+            border-radius: var(--border-radius);
+            color: var(--text-color);
+            overflow-x: auto;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            .tag-buttons {
+                padding: 15px;
+            }
+
+            .tag-button {
+                padding: 10px 20px;
+            }
+        }
+        /* Add or update these styles in your CSS */
+select {
+    padding: 12px;
+    background: var(--card-background);
+    border: 2px solid rgba(255,255,255,0.1);
+    border-radius: var(--border-radius);
+    color: var(--text-color);
+    transition: var(--transition);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    cursor: pointer;
+    min-width: 150px;
+    background-image: linear-gradient(45deg, transparent 50%, var(--text-color) 50%),
+                      linear-gradient(135deg, var(--text-color) 50%, transparent 50%);
+    background-position: calc(100% - 20px) calc(1em + 2px),
+                         calc(100% - 15px) calc(1em + 2px);
+    background-size: 5px 5px,
+                    5px 5px;
+    background-repeat: no-repeat;
+}
+
+select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.2);
+    background-color: rgba(36, 59, 85, 0.9);
+}
+
+select option {
+    background-color: var(--card-background);
+    color: var(--text-color);
+    padding: 12px;
+}
+
+select::-ms-expand {
+    display: none;
+}
+
+/* Hover state for options */
+select option:hover,
+select option:focus,
+select option:active,
+select option:checked {
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    background-color: var(--primary-color);
+}
+/* Add or update these styles in your CSS */
+.remove-line-button {
+    background: linear-gradient(45deg, #e74c3c, #c0392b);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: var(--transition);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 10px;
+    width: fit-content;
+    align-self: flex-end;
+    box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+}
+
+.remove-line-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4);
+    background: linear-gradient(45deg, #c0392b, #e74c3c);
+}
+
+.remove-line-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba(231, 76, 60, 0.4);
+}
+
+/* Update the line-row styling to properly position the buttons */
+.line-row {
+    background: rgba(255,255,255,0.05);
+    padding: 20px;
+    border-radius: var(--border-radius);
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Style for the buttons container within each line */
+.line-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
+.add-segment-button {
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: var(--transition);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3);
+}
+
+.add-segment-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(46, 204, 113, 0.4);
+}
+
+.add-segment-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba(46, 204, 113, 0.4);
+}
+
+    </style>
+</head>
+<div class="button-container">
+    <button onclick="window.location.href='/'" class="tab-btn">
+        Back to Generator
+    </button>
+</div>
+
+<style>
+.button-container {
+    display: flex;
+    justify-content: flex-start; /* Aligns button to the left */
+    margin: 20px 0;
+    padding: 0 20px;
+}
+
+.tab-btn {
+    padding: 12px 24px;
+    border: none;
+    background: linear-gradient(45deg, #2ecc71, #3498db);
+    color: white;
+    cursor: pointer;
+    border-radius: 12px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.tab-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(46, 204, 113, 0.4);
+}
+</style>
+<body>
+    <h1>Rules & MOTD Generator</h1>
+    
+    <div class="tag-buttons" id="tagButtons"></div>
+    
+    <button class="generate-button" onclick="addNewLine()">Add New Line</button>
+    
+    <div class="line-container" id="linesContainer"></div>
+    
+    <button class="generate-button" onclick="generateOutput()">Generate Output</button>
+    <button class="download-button" onclick="downloadOutput()">Download</button>
+    
+    <div class="output-container" id="outputContainer" style="display: none;">
+        <h3>Output:</h3>
+        <pre id="output"></pre>
+    </div>
+
+    <script>
+        const markdownTags = [
+            { label: "Title", value: "title", className: "title" },
+            { label: "Large", value: "large", className: "large" },
+            { label: "Small", value: "small", className: "small" },
+            { label: "Red", value: "red", className: "red" },
+            { label: "Orange", value: "orange", className: "orange" },
+            { label: "Yellow", value: "yellow", className: "yellow" },
+            { label: "Green", value: "green", className: "green" },
+            { label: "Blue", value: "blue", className: "blue" },
+            { label: "Purple", value: "purple", className: "purple" },
+            { label: "White", value: "white", className: "white" }
+        ];
+
+        let lines = [];
+
+        // Initialize the tag buttons
+        function initializeTagButtons() {
+            const tagButtons = document.getElementById('tagButtons');
+            markdownTags.forEach(tag => {
+                const button = document.createElement('button');
+                button.className = `tag-button ${tag.className}`;
+                button.textContent = tag.label;
+                tagButtons.appendChild(button);
+            });
+        }
+
+        // Structure for a segment
+        class Segment {
+            constructor(type = 'white', content = '') {
+                this.type = type;
+                this.content = content;
+            }
+        }
+
+        // Structure for a line
+        class Line {
+            constructor() {
+                this.segments = [new Segment()];
+            }
+        }
+
+        // Add a new line
+        function addNewLine() {
+            lines.push(new Line());
+            renderLines();
+        }
+
+        // Add a segment to a line
+        function addSegment(lineIndex) {
+            lines[lineIndex].segments.push(new Segment());
+            renderLines();
+        }
+
+        // Remove a line
+        function removeLine(lineIndex) {
+            lines.splice(lineIndex, 1);
+            renderLines();
+        }
+
+        // Remove a segment
+        function removeSegment(lineIndex, segmentIndex) {
+            if (lines[lineIndex].segments.length > 1) {
+                lines[lineIndex].segments.splice(segmentIndex, 1);
+                renderLines();
+            }
+        }
+
+        // Update segment content
+        function updateSegmentContent(lineIndex, segmentIndex, content) {
+            lines[lineIndex].segments[segmentIndex].content = content;
+        }
+
+        // Update segment type
+        function updateSegmentType(lineIndex, segmentIndex, type) {
+            lines[lineIndex].segments[segmentIndex].type = type;
+        }
+
+        // Render all lines
+        function renderLines() {
+            const container = document.getElementById('linesContainer');
+            container.innerHTML = '';
+
+            lines.forEach((line, lineIndex) => {
+                const lineRow = document.createElement('div');
+                lineRow.className = 'line-row';
+
+                line.segments.forEach((segment, segmentIndex) => {
+                    const segmentContainer = document.createElement('div');
+                    segmentContainer.className = 'segment-container';
+
+                    // Type selector
+                    const typeSelect = document.createElement('select');
+                    markdownTags.forEach(tag => {
+                        const option = document.createElement('option');
+                        option.value = tag.value;
+                        option.textContent = tag.label;
+                        typeSelect.appendChild(option);
+                    });
+                    typeSelect.value = segment.type;
+                    typeSelect.onchange = (e) => updateSegmentType(lineIndex, segmentIndex, e.target.value);
+
+                    // Content input
+                    const input = document.createElement('input');
+                    input.type = 'text';
+                    input.className = 'element-input';
+                    input.value = segment.content;
+                    input.placeholder = 'Enter text...';
+                    input.onchange = (e) => updateSegmentContent(lineIndex, segmentIndex, e.target.value);
+
+                    // Remove segment button
+                    const removeSegmentBtn = document.createElement('button');
+                    removeSegmentBtn.className = 'remove-button';
+                    removeSegmentBtn.textContent = '×';
+                    removeSegmentBtn.onclick = () => removeSegment(lineIndex, segmentIndex);
+
+                    segmentContainer.appendChild(typeSelect);
+                    segmentContainer.appendChild(input);
+                    segmentContainer.appendChild(removeSegmentBtn);
+                    lineRow.appendChild(segmentContainer);
+                });
+
+                // Add segment button
+                const addSegmentBtn = document.createElement('button');
+                addSegmentBtn.className = 'add-segment-button';
+                addSegmentBtn.textContent = '+ Add Segment';
+                addSegmentBtn.onclick = () => addSegment(lineIndex);
+
+                // Remove line button
+                const removeLineBtn = document.createElement('button');
+                removeLineBtn.className = 'remove-line-button';
+                removeLineBtn.textContent = 'Remove Line';
+                removeLineBtn.onclick = () => removeLine(lineIndex);
+
+                lineRow.appendChild(addSegmentBtn);
+                lineRow.appendChild(removeLineBtn);
+                container.appendChild(lineRow);
+            });
+        }
+
+        // Generate the output
+        function generateOutput() {
+            const output = lines.map(line => {
+                return line.segments
+                    .filter(segment => segment.content.trim() !== '')
+                    .map(segment => `<${segment.type}>${segment.content}</>`)
+                    .join('');
+            }).filter(line => line !== '').join('\n');
+
+            const outputContainer = document.getElementById('outputContainer');
+            const outputElement = document.getElementById('output');
+            
+            outputContainer.style.display = 'block';
+            outputElement.textContent = output;
+        }
+
+        // Download the output
+        function downloadOutput() {
+            const output = lines.map(line => {
+                return line.segments
+                    .filter(segment => segment.content.trim() !== '')
+                    .map(segment => `<${segment.type}>${segment.content}</>`)
+                    .join('');
+            }).filter(line => line !== '').join('\n');
+
+            const blob = new Blob([output], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'rules-motd.txt';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        // Initialize the application
+        window.onload = function() {
+            initializeTagButtons();
+            addNewLine(); // Start with one line
+        };
+    </script>
+</body>
+</html>

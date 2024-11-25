@@ -1,0 +1,617 @@
+[
+  {
+    "name": "Acrocanthosaurus",
+    "id": "UGC_M_NV57RV2EJD_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Acrocanthosaurus",
+    "id": "UGC_M_Z85EQ5372V_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Aerosteon riocoloradensis",
+    "id": "UGC_M_JG17949EQN_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Allosaurus",
+    "id": "UGC_M_NV50R62EJD_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Ampelosaurus",
+    "id": "UGC_M_K5GEZ410PN_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Ampelosaurus",
+    "id": "UGC_M_NZK0J4RE12_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Andrewsarchus",
+    "id": "UGC_M_Y25EGKQ0VZ_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Ankylorhiza",
+    "id": "UGC_M_YZK74RK79W_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Apatosaurus",
+    "id": "UGC_M_QM50NNJ0D3_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Archelon",
+    "id": "UGC_M_634E5J8E8W_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Argentinosaurus",
+    "id": "UGC_M_Z857QJG02V_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Armored Eotriceratops",
+    "id": "UGC_M_NV5ER12EJD_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Asylum Feline",
+    "id": "UGC_M_YZK04ZKE9W_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Australovenator",
+    "id": "UGC_M_YZKE41GE9W_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Bebu",
+    "id": "UGC_M_N597D5N7WQ_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Beringia Mammuthus Columbi",
+    "id": "UGC_M_RD17PN2EXG_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Bistahieversor",
+    "id": "UGC_M_K5G7Z2Y0PN_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Bloop",
+    "id": "UGC_M_VJKEM8KER3_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Bonapartenykus",
+    "id": "UGC_M_YZK74NG09W_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Bwi",
+    "id": "UGC_M_NZK0JMQ012_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "C-Rex",
+    "id": "UGC_M_VJKEMQ30R3_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Camarasaurus",
+    "id": "UGC_M_DYV7XQ60GX_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Carcharodontosaurus",
+    "id": "UGC_M_5XN0V387PZ_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Carnotaurus",
+    "id": "UGC_M_YZK04PD79W_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Celenai",
+    "id": "UGC_M_W61E8KG0MD_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Cerataspida",
+    "id": "UGC_M_Y257G65EVZ_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Ceratosaurus",
+    "id": "UGC_M_DYV7XN60GX_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Citipati",
+    "id": "UGC_M_YNRE3PY781_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Compsognathus",
+    "id": "UGC_M_DYV0X257GX_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Cryolophosaurus",
+    "id": "UGC_M_N597D9ZEWQ_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Dankanaptera",
+    "id": "UGC_M_634752J78W_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Deinosuchus",
+    "id": "UGC_M_6GW0YZY73Z_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Deinosuchus",
+    "id": "UGC_M_43G76JQ0NR_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Deltadromeus agilis",
+    "id": "UGC_M_W6178R10MD_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Dilophosaurus",
+    "id": "UGC_M_DYVEXZ57GX_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Dimetrodon",
+    "id": "UGC_M_W6178YG7MD_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Dominus",
+    "id": "UGC_M_43GE6R60NR_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Dracoviper",
+    "id": "UGC_M_W610844EMD_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Dryosaurus",
+    "id": "UGC_M_43GE6D67NR_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Dryptosaurus",
+    "id": "UGC_M_YNR7341E81_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Dryptosaurus",
+    "id": "UGC_M_N2RE1Y403D_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Dunkleosteus",
+    "id": "UGC_M_4RMEK5W7ZY_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Edmontosaurus Annectens",
+    "id": "UGC_M_Z850QPPE2V_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Edmontosaurus Regalis",
+    "id": "UGC_M_N2R719403D_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Ekrixinatosaurus",
+    "id": "UGC_M_6YJE2GYE58_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Gigamandra",
+    "id": "UGC_M_W61E8X47MD_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Giganotosaurus",
+    "id": "UGC_M_N59ED1N7WQ_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Giganotosaurus",
+    "id": "UGC_M_DYV7X6Y0GX_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Gigantoraptor",
+    "id": "UGC_M_K5GEZ9YEPN_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Golugore",
+    "id": "UGC_M_VJK7M6KER3_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Gonari",
+    "id": "UGC_M_N2R01X403D_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Griffin",
+    "id": "UGC_M_12GEW9PEWK_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Hannek",
+    "id": "UGC_M_6GWEYKY03Z_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Helicoprion",
+    "id": "UGC_M_N59EDPZEWQ_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Hibber",
+    "id": "UGC_M_6YJ7243058_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Inostrancevia",
+    "id": "UGC_M_DYVEXK57GX_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Japanese Giant Salamander",
+    "id": "UGC_M_QM5ENMJ7D3_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Kaprosuchus",
+    "id": "UGC_M_N597DMN7WQ_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Kelenken",
+    "id": "UGC_M_QM57N6J7D3_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Kryptops",
+    "id": "UGC_M_43GE6NQENR_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Livyatan",
+    "id": "UGC_M_YNRE311081_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Madrehorn",
+    "id": "UGC_M_QM57NKD7D3_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Magna Ant",
+    "id": "UGC_M_YNR0331081_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Maip",
+    "id": "UGC_M_Z857Q4PE2V_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Moraquile",
+    "id": "UGC_M_NZKEJJRE12_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Mosasaurus",
+    "id": "UGC_M_NZK0JNR712_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Nanuqsaurus",
+    "id": "UGC_M_QM5EN9DED3_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Nasutoceratops",
+    "id": "UGC_M_6GWEYR373Z_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Noviana",
+    "id": "UGC_M_Z857Q9P72V_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Nyctatyrannus",
+    "id": "UGC_M_K5G0Z310PN_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Ocepechelon",
+    "id": "UGC_M_4RM0K8QEZY_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Ophis",
+    "id": "UGC_M_6YJ026J758_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Orcinus Orca",
+    "id": "UGC_M_12G0W137WK_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Pachyrhinosaurus",
+    "id": "UGC_M_43G7646ENR_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Pachyrhinosaurus",
+    "id": "UGC_M_Y250GGQ0VZ_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Parasaurolophus",
+    "id": "UGC_M_Z85EQRP02V_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Pentaceratops",
+    "id": "UGC_M_4RM7KJW0ZY_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Psittacosaurus",
+    "id": "UGC_M_DYVEXP60GX_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Quetzalcoatlus",
+    "id": "UGC_M_5XNEV187PZ_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Rex",
+    "id": "UGC_M_VJKEMQ30R3_SK",
+    "category": "dinos"
+  },
+  {
+    "name": "Sachicasaurus",
+    "id": "UGC_M_RD10PP20XG_SK",
+    "category": "dinos"
+  },
+  {
+      "name": "Smilodon",
+      "id": "UGC_M_JG1E9D97QN_SK",
+      "category": "dinos"
+  },
+  {
+      "name": "Spearcrest",
+      "id": "UGC_M_N2R711873D_SK",
+      "category": "dinos"
+  },
+  {
+      "name": "Squalicorax",
+      "id": "UGC_M_6YJ72NJE58_SK",
+      "category": "dinos"
+  },
+  {
+      "name": "Tenontosaurus",
+      "id": "UGC_M_N590DRNEWQ_SK",
+      "category": "dinos"
+  },
+  {
+      "name": "Thalasrex",
+      "id": "UGC_M_VJK0M13ER3_SK",
+      "category": "dinos"
+  },
+  {
+      "name": "Therizinosaurus",
+      "id": "UGC_M_Y250GPQ0VZ_SK",
+      "category": "dinos"
+  },
+    {
+      "name": "Torvosaurus",
+      "id": "UGC_M_DYV0X96EGX_SK",
+      "category": "dinos"
+    },
+    {
+      "name": "Torvosaurus tanneri",
+      "id": "UGC_M_YNR73VY081_SK",
+      "category": "dinos"
+    },
+    {
+      "name": "Triceratops",
+      "id": "UGC_M_YZK74JGE9W_SK",
+      "category": "dinos"
+    },
+    {
+      "name": "Tropeognathus",
+      "id": "UGC_M_4RMEKQWEZY_SK",
+      "category": "dinos"
+    },
+    {
+      "name": "Tyrannosaurus",
+      "id": "UGC_M_NV57RRW7JD_SK",
+      "category": "dinos"
+    },
+    {
+      "name": "Utahraptor",
+      "id": "UGC_M_5XN7VXW0PZ_SK",
+      "category": "dinos"
+    },
+    {
+      "name": "Velocciraptor",
+      "id": "UGC_M_43G069Q0NR_SK",
+      "category": "dinos"
+    },
+    {
+      "name": "Xiphactinus",
+      "id": "UGC_M_6YJ72ZYE58_SK",
+      "category": "dinos"
+    },
+    {
+      "name": "Yangchuanosaurus",
+      "id": "UGC_M_K5G7ZX1EPN_SK",
+      "category": "dinos"
+    },
+    {
+      "name": "Yunnanosaurus",
+      "id": "UGC_M_Y25EGXK7VZ_SK",
+      "category": "dinos"
+    },
+    {
+      "name": "Yutyrannus",
+      "id": "UGC_M_QM5ENGD7D3_SK",
+      "category": "dinos"
+    },
+    {
+      "name": "Zhuchengtyrannus",
+      "id": "UGC_M_6GW0YYP03Z_SK",
+      "category": "dinos"
+    },
+    {
+      "name": "ArazoaAquatica",
+      "id": "UGC_M_Y250G15EVZ_SK",
+      "category": "maps"
+    },
+    {
+      "name": "AsylumLounge",
+      "id": "UGC_M_DYV7XD5EGX_SK",
+      "category": "maps"
+    },
+    {
+      "name": "Avernus",
+      "id": "UGC_M_K5G0ZN10PN_SK",
+      "category": "maps"
+    },
+    {
+      "name": "Beringia",
+      "id": "UGC_M_YNR03ZY081_SK",
+      "category": "maps"
+    },
+    {
+      "name": "Etis",
+      "id": "UGC_M_N597DNPEWQ_SK",
+      "category": "maps"
+    },
+    {
+      "name": "HellsforgeCastle",
+      "id": "UGC_M_K5G0ZRY7PN_SK",
+      "category": "maps"
+    },
+    {
+      "name": "maplewood",
+      "id": "UGC_M_JG179QX7QN_SK",
+      "category": "maps"
+    },
+    {
+      "name": "Najuro",
+      "id": "UGC_M_NV5ERMM0JD_SK",
+      "category": "maps"
+    },
+    {
+      "name": "NewEra",
+      "id": "UGC_M_43G06350NR_SK",
+      "category": "maps"
+    },
+    {
+      "name": "Paragon",
+      "id": "UGC_M_YZKE4MK09W_SK",
+      "category": "maps"
+    },
+    {
+      "name": "Savanna",
+      "id": "UGC_M_RD10PRZEXG_SK",
+      "category": "maps"
+    },
+    {
+      "name": "Deaths Crazy skins",
+      "id": "UGC_M_12G0WXP7WK_SK",
+      "category": "skins"
+    },
+    {
+      "name": "IoA Realism skins",
+      "id": "UGC_M_12G0WJNEWK_SK",
+      "category": "skins"
+    },
+    {
+      "name": "Isle of Asylum skins",
+      "id": "UGC_M_N2R01R03DQ_SK",
+      "category": "skins"
+    },
+    {
+      "name": "Ordinary Prehistoric skin Mod",
+      "id": "UGC_M_Y250G4KEVZ_SK",
+      "category": "skins"
+    },
+    {
+      "name": "Radical Rocks",
+      "id": "UGC_M_YZK74KD09W_SK",
+      "category": "misc"
+    },
+    {
+      "name": "Rainbow dinos",
+      "id": "UGC_M_6YJ023758N_SK",
+      "category": "skins"
+    },
+    {
+      "name": "Simple skins",
+      "id": "UGC_M_N59EDWP0WQ_SK",
+      "category": "skins"
+    },
+    {
+      "name": "Arazoa Creator",
+      "id": "UGC_M_43G06W60NR_SK",
+      "category": "misc"
+    },
+    {
+      "name": "CMIPlus",
+      "id": "UGC_M_63475MJ78W_SK",
+      "category": "misc"
+    },
+    {
+      "name": "Crazy Items",
+      "id": "UGC_M_K5G0ZGQEPN_SK",
+      "category": "misc"
+    },
+    {
+      "name": "Diet Mod",
+      "id": "UGC_M_12G7WQN7WK_SK",
+      "category": "misc"
+    },
+    {
+      "name": "Veneer",
+      "id": "UGC_M_YZK743K09W_SK",
+      "category": "dinos"
+    },
+    {
+      "name": "Zealandia Natural",
+      "id": "UGC_M_6YJ02KY758_SK",
+      "category": "skins"
+    }
+  ]

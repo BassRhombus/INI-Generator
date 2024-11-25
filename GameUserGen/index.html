@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mod Selector</title>
+    <style>
+        :root {
+            --primary-color: #2ecc71;
+            --secondary-color: #3498db;
+            --accent-color: #9b59b6;
+            --background-color: #141e30;
+            --card-background: #243b55;
+            --text-color: #ecf0f1;
+            --text-muted: #bdc3c7;
+            --border-radius: 12px;
+            --box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            --transition: all 0.3s ease;
+            --gradient: linear-gradient(135deg, #1a2a3d 0%, #243b55 100%);
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            background-image: linear-gradient(135deg, #141e30 0%, #243b55 100%);
+            min-height: 100vh;
+        }
+
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            text-decoration: none;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            transition: var(--transition);
+            z-index: 1000;
+            box-shadow: var(--box-shadow);
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(46, 204, 113, 0.4);
+        }
+
+        .back-btn svg { transition: transform 0.3s ease; }
+        .back-btn:hover svg { transform: translateX(-3px); }
+
+        h1 {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 2rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            background: linear-gradient(45deg, #2ecc71, #3498db);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .search-input {
+            width: calc(100% - 24px); /* Account for padding */
+            margin: 0 auto 20px;
+            display: block;
+            max-width: 600px; /* Limit width of search box */
+            padding: 12px;
+            background: rgba(255,255,255,0.1);
+            border: 2px solid rgba(255,255,255,0.1);
+            border-radius: var(--border-radius);
+            color: var(--text-color);
+            transition: var(--transition);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.2);
+            background: rgba(255,255,255,0.15);
+        }
+
+        .mod-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+            max-height: 60vh; /* Limit height to 60% of viewport height */
+            overflow-y: auto; /* Enable scrolling for grid area only */
+            padding: 10px;
+            border-radius: var(--border-radius);
+            background: rgba(0,0,0,0.2);
+        }
+
+        .mod-item {
+            background: var(--gradient);
+            padding: 15px; /* Reduced padding */
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            border: 1px solid rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            font-size: 0.9em; /* Slightly smaller text */
+        }
+
+        .mod-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+        }
+
+        .mod-info {
+            margin-left: 1rem;
+            flex-grow: 1;
+        }
+
+        .mod-name { 
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .mod-id {
+            color: var(--text-muted);
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        input[type="checkbox"] {
+            accent-color: var(--primary-color);
+            width: 18px;
+            height: 18px;
+        }
+
+        .generate-button {
+            padding: 12px 24px;
+            border: none;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            cursor: pointer;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .generate-button:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(46, 204, 113, 0.4);
+        }
+
+        .generate-button:disabled {
+            background: var(--text-muted);
+            cursor: not-allowed;
+        }
+
+        .selected-mods {
+            background: var(--gradient);
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            border: 1px solid rgba(255,255,255,0.1);
+            margin-top: 20px;
+            max-height: 300px; /* Increased from 200px */
+            overflow-y: auto;
+            margin-bottom: 20px; /* Added bottom margin */
+        }
+
+        .selected-mods h2 { margin-top: 0; }
+
+        .selected-mods ul {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 10px;
+            padding: 10px;
+            margin: 0;
+            list-style: none;
+        }
+
+        .selected-mods::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .selected-mods::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.1);
+            border-radius: 4px;
+        }
+
+        .selected-mods::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 4px;
+        }
+
+        .selected-mods::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary-color);
+        }
+
+        .selected-mods li {
+            background: rgba(255,255,255,0.1);
+            padding: 8px 12px;
+            border-radius: var(--border-radius);
+            font-size: 0.9em;
+        }
+
+        /* Adjust layout spacing */
+        .container {
+            display: grid;
+            grid-template-rows: auto auto 1fr auto auto;
+            gap: 20px;
+            min-height: calc(100vh - 40px);
+            padding: 20px;
+            max-height: none; /* Remove any max-height restriction */
+        }
+
+        /* Center the generate button */
+        .bottom-button-container {
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .mod-grid {
+                grid-template-columns: 1fr; /* Single column on mobile */
+                max-height: 50vh;
+            }
+
+            .selected-mods ul {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Tab Navigation Styles */
+        .tab-nav {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            justify-content: center;
+        }
+
+        .tab-btn {
+            padding: 12px 24px;
+            background: var(--gradient);
+            border: none;
+            color: var(--text-color);
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.7;
+        }
+
+        .tab-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(46, 204, 113, 0.4);
+            opacity: 0.9;
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            opacity: 1;
+        }
+
+        /* Tab Content Styles */
+        .tab-content {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+            opacity: 1;
+        }
+
+        /* Select All Button Styles */
+        .select-all-btn {
+            margin-bottom: 15px;
+            padding: 10px 20px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            border: none;
+            color: white;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+            width: 100%;
+            max-width: 200px;
+            display: block;
+        }
+
+        .select-all-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(46, 204, 113, 0.4);
+        }
+
+        /* Import Button Styles */
+        .import-section {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .import-btn {
+            display: flex;
+            align-items: center;
+            padding: 12px 24px;
+            background: linear-gradient(45deg, var(--secondary-color), var(--accent-color));
+            border: none;
+            color: white;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: var(--box-shadow);
+        }
+
+        .import-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <a href="/" class="back-btn">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+            <path fill="currentColor" d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"/>
+        </svg>
+        Back
+    </a>
+
+    <div class="import-section">
+        <input type="file" id="settingsFile" accept=".ini" style="display: none;">
+        <button class="import-btn" onclick="document.getElementById('settingsFile').click()">
+            <svg viewBox="0 0 24 24" width="24" height="24" style="margin-right: 8px;">
+                <path fill="currentColor" d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20M16,11V18.1L13.9,16L11.1,18.8L8.3,16L11.1,13.2L8.9,11H16Z"/>
+            </svg>
+            Import Existing Settings
+        </button>
+    </div>
+
+    <div class="container">
+        <h1>Path of Titans Mod Selector</h1>
+        
+        <div class="tab-nav">
+            <button class="tab-btn active" data-tab="dinos">Dinos</button>
+            <button class="tab-btn" data-tab="maps">Maps</button>
+            <button class="tab-btn" data-tab="skins">Skins</button>
+            <button class="tab-btn" data-tab="misc">Misc</button>
+        </div>
+
+        <input type="text" id="searchInput" class="search-input" placeholder="Search mods...">
+        
+        <div id="dinos" class="tab-content active">
+            <button class="select-all-btn" onclick="selectAll('dinos')">Select All Dinos</button>
+            <div class="mod-grid"></div>
+        </div>
+
+        <div id="maps" class="tab-content">
+            <button class="select-all-btn" onclick="selectAll('maps')">Select All Maps</button>
+            <div class="mod-grid"></div>
+        </div>
+
+        <div id="skins" class="tab-content">
+            <button class="select-all-btn" onclick="selectAll('skins')">Select All Skins</button>
+            <div class="mod-grid"></div>
+        </div>
+
+        <div id="misc" class="tab-content">
+            <button class="select-all-btn" onclick="selectAll('misc')">Select All Misc</button>
+            <div class="mod-grid"></div>
+        </div>
+
+        <div class="bottom-button-container">
+            <button id="generateButton" class="generate-button" disabled>
+                Generate Mod List File
+            </button>
+        </div>
+
+        <div class="selected-mods">
+            <h2>Selected Mods: <span id="selectedCount">0</span></h2>
+            <ul id="selectedModsList"></ul>
+        </div>
+    </div>
+
+    <script>
+        // Add this to your existing script.js or inline
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabs = document.querySelectorAll('.tab-btn');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // Remove active class from all tabs and contents
+                    tabs.forEach(t => t.classList.remove('active'));
+                    document.querySelectorAll('.tab-content').forEach(content => {
+                        content.classList.remove('active');
+                    });
+                    
+                    // Add active class to clicked tab and its content
+                    tab.classList.add('active');
+                    const tabContent = document.getElementById(tab.dataset.tab);
+                    tabContent.classList.add('active');
+                });
+            });
+        });
+
+        // Add this function to your existing script.js
+        function selectAll(category) {
+            const activeTab = document.getElementById(category);
+            const checkboxes = activeTab.querySelectorAll('input[type="checkbox"]');
+            
+            // Check if all checkboxes are already selected
+            const allSelected = Array.from(checkboxes).every(checkbox => checkbox.checked);
+            
+            // Toggle all checkboxes
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = !allSelected;
+                // Trigger change event to update the selected mods list
+                const event = new Event('change');
+                checkbox.dispatchEvent(event);
+            });
+
+            // Update UI
+            updateUI();
+        }
+    </script>
+
+    <script src="./script.js"></script>
+</body>
+</html>
